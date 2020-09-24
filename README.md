@@ -1,6 +1,6 @@
-# dbt action
+# dbt-action
 
-A GitHub Action to run [dbt](https://www.getdbt.com) commands in a Docker container. You can use [dbt commands](https://docs.getdbt.com/reference/dbt-commands) such as `run`, `test` and `debug`. This action captures the dbt console output for use in subsequent steps. 
+A GitHub Action to run [dbt](https://www.getdbt.com) commands in a Docker container. It uses the official images provided by [Fishtown Analytics](https://hub.docker.com/r/fishtownanalytics/dbt/tags). You can use [dbt commands](https://docs.getdbt.com/reference/dbt-commands) such as `run`, `test` and `debug`. This action captures the dbt console output for use in subsequent steps. 
 
 ## Usage
 
@@ -14,7 +14,7 @@ A GitHub Action to run [dbt](https://www.getdbt.com) commands in a Docker contai
 ```
 ### Outputs
 
-You can grab the result output `passed|failed` of this action if you want to use it in a next step:
+The result of the dbt command is either `failed` or `passed` and is saved into the result output if you want to use it in a next step:
 
 ```yml
     - name: dbt-actions
@@ -28,7 +28,7 @@ You can grab the result output `passed|failed` of this action if you want to use
       run: echo "${{ steps.dbt-run.outputs.result }}"
       shell: bash
 ```
-The result output is also saved in the `DBT_RUN_STATE` environment variable. The location of the dbt console log output can be accessed via `DBT_LOG_PATH`. See the "Suggested workflow" section on how to use them.
+The result output is also saved in the `DBT_RUN_STATE` environment variable. The location of the dbt console log output can be accessed via the environment variable `DBT_LOG_PATH`. See the "Suggested workflow" section on how to use these.
 
 ### General Setup
 
@@ -43,7 +43,7 @@ This action assumes that your dbt project is in the top-level directory of your 
       env:
         DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
 ```
-**Important:** dbt projects use a `profiles.yml` file to connect to your dataset. **dbt-actions** currently requires `profiles.yml` to be in your repo, alongside the `dbt_project.yml` file. 
+**Important:** dbt projects use a `profiles.yml` file to connect to your dataset. **dbt-action** currently requires `profiles.yml` to be in your repo, alongside the `dbt_project.yml` file. 
 
 ```yml
 # profiles.yml
