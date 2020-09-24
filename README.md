@@ -94,7 +94,7 @@ my_dataset:
 ```
 Create a secret for `DBT_USER` and `DBT_PASSWORD` and reference them in your workflow.
 ```yml
-    - name: dbt-actions
+    - name: dbt-action
       uses: mwhitaker/dbt-actions@master
       with:
         dbt_command: "dbt run --profiles-dir ."
