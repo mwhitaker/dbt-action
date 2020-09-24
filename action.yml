@@ -1,0 +1,24 @@
+name: "dbt actions"
+description: "Run and schedule dbt commands directly in your Github repo"
+author: "Michael Whitaker"
+
+inputs:
+  dbt_command:
+    description: "dbt command"
+    default: "dbt run --profiles-dir ."
+    required: true
+  dbt_project_folder:
+    description: "dbt project folder. Defaults to ."
+    default: "."
+    required: false
+outputs:
+  result:
+    description: "Success or failure of the dbt command"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.dbt_command }}
+branding:
+  icon: 'database'  
+  color: 'blue'
