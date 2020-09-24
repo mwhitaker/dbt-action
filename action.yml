@@ -1,4 +1,4 @@
-name: "dbt actions"
+name: "dbt action"
 description: "Run and schedule dbt commands directly in your Github repo"
 author: "Michael Whitaker"
 
