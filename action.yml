@@ -21,4 +21,4 @@ runs:
     - ${{ inputs.dbt_command }}
 branding:
   icon: 'database'  
-  color: 'blue'
+  color: 'purple'
