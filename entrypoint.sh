@@ -31,4 +31,5 @@ if [ $? -eq 0 ]
     echo "DBT_RUN_STATE=failed" >> $GITHUB_ENV
     echo "::set-output name=result::failed"
     echo "DBT run failed" >> "${DBT_LOG_FILE}"
+    exit 1
 fi
