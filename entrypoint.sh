@@ -8,7 +8,7 @@ cd ${INPUT_DBT_PROJECT_FOLDER}
 
 if [ -n "${DBT_BIGQUERY_TOKEN}" ] 
 then
- echo ${DBT_BIGQUERY_TOKEN} | base64 -d > ./creds.json
+ echo ${DBT_BIGQUERY_TOKEN} > ./creds.json
 fi
 
 if [ -n "${DBT_USER}" ] && [ -n "$DBT_PASSWORD" ]
