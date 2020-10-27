@@ -16,8 +16,8 @@ then
   if $(echo ${DBT_BIGQUERY_TOKEN} | base64 -d > ./creds.json)
   then
     echo success parsing base64 encoded token
-  elif
-    $(echo ${DBT_BIGQUERY_TOKEN} > ./creds.json)
+  elif $(echo ${DBT_BIGQUERY_TOKEN} > ./creds.json)
+  then
     echo success parsing plain token
   else
     echo cannot parse token
