@@ -25,6 +25,7 @@ The result of the dbt command is either `failed` or `passed` and is saved into t
       env:
         DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
     - name: Get the result
+      if: ${{ always() }}
       run: echo "${{ steps.dbt-run.outputs.result }}"
       shell: bash
 ```
