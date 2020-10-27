@@ -66,15 +66,9 @@ Note that the `./creds.json` keyfile is generated during build time using [secre
 
 ### Setup for BigQuery
 
-Connecting to **BigQuery** requires a service account file with the right permissions to access your dataset. Download the service account file outside your repo so that it doesn't get committed to your repo. Then generate a **Base64** encoded version of it using your Terminal:
+Connecting to **BigQuery** requires a service account file with the right permissions to access your dataset. Download the service account json file outside your repo so that it doesn't accidentally get committed to your repo.
 
-```bash
-cat service_acount.json | base64
-#
-# output should look like this
-$ ewogICAgInR5cGUiOiAic2VydmljZV9hY2NvdW50IiwKICAgICJwcm9qZWN0X2lkIjogInRlc3QtcHJvamVjdCIsCiAgICAicHJpdmF0ZV9rZXlfaWQiOiAiMTIzNDU2Nzc4ODkiLAogICAgInByaXZhdGVfa2V5IjogIi0tLS0tQkVHSU4gUFJJVkFURSBLRVktLS0tLVxubjlLakpHNGNqWFFvWDBwOUJMV2xRPT1cbi0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS1cbiIsCiAgICAiY2xpZW50X2VtYWlsIjogImRidC11c2VyQGF0ZXN0LXByb2plY3QuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLAogICAgImNsaWVudF9pZCI6ICIxMDk4NzY1NDMyMTAiLAogICAgImF1dGhfdXJpIjogImh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbS9vL29hdXRoMi9hdXRoIiwKICAgICJ0b2tlbl91cmkiOiAiaHR0cHM6Ly9vYXV0aDIuZ29vZ2xlYXBpcy5jb20vdG9rZW4iLAogICAgImF1dGhfcHJvdmlkZXJfeDUwOV9jZXJ0X3VybCI6ICJodHRwczovL3d3dy5nb29nbGVhcGlzLmNvbS9vYXV0aDIvdjEvY2VydHMiLAogICAgImNsaWVudF94NTA5X2NlcnRfdXJsIjogImh0dHBzOi8vd3d3Lmdvb2dsZWFwaXMuY29tL3JvYm90L3YxL21ldGFkYXRhL3g1MDkvZGJ0LXVzZXIlNDBhbmFseXRpY3MtYnVkZHktaW50ZXJuYWwuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iCiAgfQ==
-```
-Create a new [secret](https://docs.github.com/en/actions/reference/encrypted-secrets) in your repo with the name `DBT_BIGQUERY_TOKEN` and paste in the encoded string and save the secret.
+Create a new [secret](https://docs.github.com/en/actions/reference/encrypted-secrets) in your repo with the name `DBT_BIGQUERY_TOKEN` and paste in the contents of the json file. You can also use a base64 encoded version if you prefer: `cat service_account.json | base64`.
 
 ### Setup for other Databases
 Databases that specify username/password in `profiles.yml` should be setup like this:
