@@ -5,12 +5,6 @@ set -o pipefail
 echo "dbt project folder set as: \"${INPUT_DBT_PROJECT_FOLDER}\""
 cd ${INPUT_DBT_PROJECT_FOLDER}
 
-
-# if [ -n "${DBT_BIGQUERY_TOKEN}" ] 
-# then
-#  echo ${DBT_BIGQUERY_TOKEN} > ./creds.json
-# fi
-
 if [ -n "${DBT_BIGQUERY_TOKEN}" ]
 then
   if $(echo ${DBT_BIGQUERY_TOKEN} | base64 -d > ./creds.json)
@@ -21,9 +15,11 @@ then
     echo success parsing plain token
   else
     echo cannot parse token
+    exit 1
   fi
 else
   echo cannot parse token
+  exit 1
 fi
 
 if [ -n "${DBT_USER}" ] && [ -n "$DBT_PASSWORD" ]
