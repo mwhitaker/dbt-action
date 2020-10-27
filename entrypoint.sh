@@ -7,7 +7,7 @@ cd ${INPUT_DBT_PROJECT_FOLDER}
 
 if [ -n "${DBT_BIGQUERY_TOKEN}" ]
 then
-  if $(echo ${DBT_BIGQUERY_TOKEN} | base64 -d > ./creds.json)
+  if $(echo ${DBT_BIGQUERY_TOKEN} | base64 -d > ./creds.json 2>/dev/null)
   then
     echo success parsing base64 encoded token
   elif $(echo ${DBT_BIGQUERY_TOKEN} > ./creds.json)
