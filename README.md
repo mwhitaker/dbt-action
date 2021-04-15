@@ -6,7 +6,7 @@ A GitHub Action to run [dbt](https://www.getdbt.com) commands in a Docker contai
 
 ```yml
     - name: dbt-action
-      uses: mwhitaker/dbt-actions@master
+      uses: mwhitaker/dbt-action@master
       with:
         dbt_command: "dbt run --profiles-dir ."
       env:
@@ -19,7 +19,7 @@ The result of the dbt command is either `failed` or `passed` and is saved into t
 ```yml
     - name: dbt-action
       id: dbt-run
-      uses: mwhitaker/dbt-actions@master
+      uses: mwhitaker/dbt-action@master
       with:
         dbt_command: "dbt run --profiles-dir ."
       env:
@@ -37,7 +37,7 @@ This action assumes that your dbt project is in the top-level directory of your 
 
 ```yml
     - name: dbt-action
-      uses: mwhitaker/dbt-actions@master
+      uses: mwhitaker/dbt-action@master
       with:
         dbt_command: "dbt run --profiles-dir ."
         dbt_project_folder: "dbt_project"
@@ -90,21 +90,21 @@ my_dataset:
 Create a secret for `DBT_USER` and `DBT_PASSWORD` and reference them in your workflow.
 ```yml
     - name: dbt-action
-      uses: mwhitaker/dbt-actions@master
+      uses: mwhitaker/dbt-action@master
       with:
         dbt_command: "dbt run --profiles-dir ."
       env:
         DBT_USER: ${{ secrets.DBT_USER }}
         DBT_PASSWORD: ${{ secrets.DBT_PASSWORD }}
 ```
-Please note that I have only tested BigQuery and Postgres. If you cannot connect to another database, please submit an [issue](https://github.com/mwhitaker/dbt-actions/issues) and we'll figure it out.
+Please note that I have only tested BigQuery and Postgres. If you cannot connect to another database, please submit an [issue](https://github.com/mwhitaker/dbt-action/issues) and we'll figure it out.
 
 ## Suggested workflow
 
 Here is a [sample workflow](https://github.com/mwhitaker/dbt-action-sample) that sends dbt console logs by email.
 
 ## Bugs and feature requests
-Please submit via [Github issues](https://github.com/mwhitaker/dbt-actions/issues).
+Please submit via [Github issues](https://github.com/mwhitaker/dbt-action/issues).
 ## License
 
 [MIT](LICENSE)
