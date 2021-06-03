@@ -18,18 +18,18 @@ then
     echo cannot parse token
     exit 1
   fi
-else
-  echo no token provided
 fi
 
 if [ -n "${DBT_USER}" ] && [ -n "$DBT_PASSWORD" ]
 then
+ echo trying to use user/password
  sed -i "s/_user_/${DBT_USER}/g" ./profiles.yml
  sed -i "s/_password_/${DBT_PASSWORD}/g" ./profiles.yml
 fi
 
 if [ -n "${DBT_TOKEN}" ]
 then
+ echo trying to use DBT_TOKEN for databricks
  sed -i "s/_token_/${DBT_TOKEN}/g" ./profiles.yml
 fi
 
