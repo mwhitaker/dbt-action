@@ -9,28 +9,27 @@ if [ -n "${DBT_BIGQUERY_TOKEN}" ]
 then
   echo trying to parse bigquery token
   $(echo ${DBT_BIGQUERY_TOKEN} | base64 -d > ./creds.json 2>/dev/null)
-  success=$?
-  if [ $success -eq 0 ]
+  if [ $? -eq 0 ]
   then
     echo success parsing base64 encoded token
   elif $(echo ${DBT_BIGQUERY_TOKEN} > ./creds.json)
   then
     echo success parsing plain token
   else
-    echo cannot parse token
+    echo cannot parse bigquery token
     exit 1
   fi
 elif [ -n "${DBT_USER}" ] && [ -n "$DBT_PASSWORD" ]
 then
  echo trying to use user/password
  sed -i "s/_user_/${DBT_USER}/g" ./datab.yml
- sed -i "s/_password_/${DBT_PASSWORD}/g" ./datab.yml
+ sed -i "s/_password_/${DBT_PASSWORD}/g" ./profiles.yml
 elif [ -n "${DBT_TOKEN}" ]
 then
- echo trying to use DBT_TOKEN for databricks
- sed -i "s/_token_/${DBT_TOKEN}/g" ./datab.yml
+ echo trying to use DBT_TOKEN/databricks
+ sed -i "s/_token_/${DBT_TOKEN}/g" ./profiles.yml
 else
-  echo no tokens supplied
+  echo no tokens or credentials supplied
 fi
 
 DBT_LOG_FILE=${DBT_LOG_FILE:="dbt_console_output.txt"}
