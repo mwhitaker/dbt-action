@@ -46,6 +46,8 @@ This action assumes that your dbt project is in the top-level directory of your 
 ```
 **Important:** dbt projects use a `profiles.yml` file to connect to your dataset. **dbt-action** currently requires `profiles.yml` to be in your repo, alongside the `dbt_project.yml` file. 
 
+### Setup for BigQuery
+
 ```yml
 # profiles.yml
 my_dataset: # this needs to match the profile: in your dbt_project.yml file
@@ -64,13 +66,12 @@ my_dataset: # this needs to match the profile: in your dbt_project.yml file
 ```
 Note that the `./creds.json` keyfile is generated during build time using [secrets](https://docs.github.com/en/actions/reference/encrypted-secrets), so your service account credentials are not exposed in the repo.
 
-### Setup for BigQuery
 
 Connecting to **BigQuery** requires a service account file with the right permissions to access your dataset. Download the service account json file outside your repo so that it doesn't accidentally get committed to your repo.
 
 Create a new [secret](https://docs.github.com/en/actions/reference/encrypted-secrets) in your repo with the name `DBT_BIGQUERY_TOKEN` and paste in the contents of the json file. You can also use a base64 encoded version if you prefer: `cat service_account.json | base64`.
 
-### Setup for other Databases
+### Setup for databases using username/password
 Databases that specify username/password in `profiles.yml` should be setup like this:
 
 ```yml
@@ -97,9 +98,40 @@ Create a secret for `DBT_USER` and `DBT_PASSWORD` and reference them in your wor
         DBT_USER: ${{ secrets.DBT_USER }}
         DBT_PASSWORD: ${{ secrets.DBT_PASSWORD }}
 ```
-Please note that I have only tested BigQuery and Postgres. If you cannot connect to another database, please submit an [issue](https://github.com/mwhitaker/dbt-action/issues) and we'll figure it out.
 
-## Suggested workflow
+### Setup for databricks
+dbt-action was tested using the `http` method for databricks. A sample `profiles.yml` should look like this:
+
+```yml
+# profiles.yml
+default:
+  target: dev
+  outputs:
+    dev:
+      type: spark
+      method: http
+      schema: dev_user
+      host: abc-12345-3cc5.cloud.databricks.com
+      port: 443
+      token: _token_ # this will be substituted during build time
+      cluster: 1234-56789-abc233
+      connect_timeout: 30
+      connect_retries: 15
+      threads: 5
+```
+Create a secret for `DBT_TOKEN` and reference it in your workflow.
+```yml
+    - name: dbt-action
+      uses: mwhitaker/dbt-action@master
+      with:
+        dbt_command: "dbt run --profiles-dir ."
+      env:
+        DBT_TOKEN: ${{ secrets.DBT_TOKEN }}
+```
+
+If you cannot connect to another database, please submit an [issue](https://github.com/mwhitaker/dbt-action/issues) and we'll figure it out.
+
+## Suggested workflow and other tips
 
 Here is a [sample workflow](https://github.com/mwhitaker/dbt-action-sample) that sends dbt console logs by email.
 
