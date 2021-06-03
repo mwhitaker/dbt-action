@@ -5,10 +5,9 @@ set -o pipefail
 echo "dbt project folder set as: \"${INPUT_DBT_PROJECT_FOLDER}\""
 cd ${INPUT_DBT_PROJECT_FOLDER}
 
-echo trying to parse bigquery token
-
 if [ -n "${DBT_BIGQUERY_TOKEN}" ]
 then
+  echo trying to parse bigquery token
   if $(echo ${DBT_BIGQUERY_TOKEN} | base64 -d > ./creds.json 2>/dev/null)
   then
     echo success parsing base64 encoded token
@@ -27,6 +26,11 @@ if [ -n "${DBT_USER}" ] && [ -n "$DBT_PASSWORD" ]
 then
  sed -i "s/_user_/${DBT_USER}/g" ./profiles.yml
  sed -i "s/_password_/${DBT_PASSWORD}/g" ./profiles.yml
+fi
+
+if [ -n "${DBT_TOKEN}" ]
+then
+ sed -i "s/_token_/${DBT_TOKEN}/g" ./profiles.yml
 fi
 
 DBT_LOG_FILE=${DBT_LOG_FILE:="dbt_console_output.txt"}
