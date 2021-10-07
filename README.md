@@ -1,6 +1,9 @@
 # dbt-action
 
-A GitHub Action to run [dbt](https://www.getdbt.com) commands in a Docker container. It uses the official images provided by [Fishtown Analytics](https://hub.docker.com/r/fishtownanalytics/dbt/tags). You can use [dbt commands](https://docs.getdbt.com/reference/dbt-commands) such as `run`, `test` and `debug`. This action captures the dbt console output for use in subsequent steps. 
+A GitHub Action to run [dbt](https://www.getdbt.com) commands in a Docker container. It uses the official images provided by [Fishtown Analytics](https://hub.docker.com/r/fishtownanalytics/dbt/tags). You can use [dbt commands](https://docs.getdbt.com/reference/dbt-commands) such as `run`, `test` and `debug`. This action captures the dbt console output for use in subsequent steps.
+
+### dbt version
+dbt updates their [docker images](https://hub.docker.com/r/fishtownanalytics/dbt/tags?page=1&ordering=last_updated) on a frequent basis and the main branch of this Github Action should be close to the last stable tag. If you need to use an earlier version of dbt, you can call this action with a specific [branch](https://github.com/mwhitaker/dbt-action/branches), eg `mwhitaker/dbt-action@fishtown-v0.21.0` or `mwhitaker/dbt-action@fishtown-v0.19.1`.
 
 ## Usage
 
