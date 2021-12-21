@@ -36,7 +36,7 @@ DBT_LOG_FILE=${DBT_LOG_FILE:="dbt_console_output.txt"}
 DBT_LOG_PATH="${INPUT_DBT_PROJECT_FOLDER}/${DBT_LOG_FILE}"
 echo "DBT_LOG_PATH=${DBT_LOG_PATH}" >> $GITHUB_ENV
 echo "saving console output in \"${DBT_LOG_PATH}\""
-$1 2>&1 | tee "${DBT_LOG_FILE}"
+eval "$1" 2>&1 | tee "${DBT_LOG_FILE}"
 if [ $? -eq 0 ]
   then
     echo "DBT_RUN_STATE=passed" >> $GITHUB_ENV
