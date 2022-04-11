@@ -1,12 +1,8 @@
-ARG DBT_VERSION=1.0.0
-FROM fishtownanalytics/dbt:${DBT_VERSION}
-RUN apt-get update && apt-get install libsasl2-dev -y
+# dbt-snowflake adapter pulls in dependencies such as dbt-core
+FROM ghcr.io/dbt-labs/dbt-snowflake:1.0.latest
+RUN apt-get update && apt-get install --no-install-recommends -y
 
-# Need to re-declare the ARG to use its default value defined before the FROM
-ARG DBT_VERSION
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install dbt-databricks && \
-    pip install dbt-spark[PyHive]==${DBT_VERSION}
+RUN pip install --no-cache-dir --upgrade pip
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
