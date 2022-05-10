@@ -1,6 +1,7 @@
-name: Schedule dbt
+name: check dbt version and installation
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'dbt_project/**'
@@ -18,10 +19,8 @@ jobs:
         id: dbt-run
         uses: ./
         with:
-          dbt_command: "dbt run --profiles-dir ."
+          dbt_command: "dbt --version"
           dbt_project_folder: "dbt_project"
-        env:
-          DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
       - name: Get the result
         run: echo "${{ steps.dbt-run.outputs.result }}"
         shell: bash
