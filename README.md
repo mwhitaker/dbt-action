@@ -5,9 +5,7 @@ A GitHub Action to run [dbt](https://www.getdbt.com) commands in a Docker contai
 ### dbt version
 The current version of dbt is **1.0.4**. Please note that from dbt v1.0.0. you may have to change your dbt project structure compared to v0.x.x. See the [migration](https://docs.getdbt.com/docs/guides/migration-guide/upgrading-to-1-0-0) docs.
 
-dbt updates their [docker images](https://hub.docker.com/r/fishtownanalytics/dbt/tags?page=1&ordering=last_updated) on a frequent basis and the main branch of this Github Action should be close to the last stable tag. If you need to use an earlier version of dbt, you can call this action with a specific [branch](https://github.com/mwhitaker/dbt-action/branches), eg `mwhitaker/dbt-action@fishtown-v0.21.0` or `mwhitaker/dbt-action@fishtown-v0.19.1`.
-
-You can also reference a [tagged](https://github.com/mwhitaker/dbt-action/releases) release, eg `mwhitaker/dbt-action@v0.1.9`.
+dbt updates their [docker images](https://hub.docker.com/r/fishtownanalytics/dbt/tags?page=1&ordering=last_updated) on a frequent basis and the main branch of this Github Action should be close to the last stable tag. If you need to use an earlier version of dbt, you can call this action with a specific [branch](https://github.com/mwhitaker/dbt-action/branches), eg `mwhitaker/dbt-action@v0.21.0` or `mwhitaker/dbt-action@v0.19.1`.
 
 ## Usage
 
