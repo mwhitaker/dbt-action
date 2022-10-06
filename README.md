@@ -34,7 +34,7 @@ The result of the dbt command is either `failed` or `passed` and is saved into t
       run: echo "${{ steps.dbt-run.outputs.result }}"
       shell: bash
 ```
-The result output is also saved in the `DBT_RUN_STATE` environment variable. The location of the dbt console log output can be accessed via the environment variable `DBT_LOG_PATH`. See the "Suggested workflow" section on how to use these.
+The result output is also saved in the `DBT_RUN_STATE` environment variable. The location of the dbt console log output can be accessed via the environment variable `DBT_ACTION_LOG_PATH`. See the "Suggested workflow" section on how to use these.
 
 ### General Setup
 
