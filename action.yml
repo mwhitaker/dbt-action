@@ -11,6 +11,10 @@ inputs:
     description: "dbt project folder. Defaults to ."
     default: "."
     required: false
+  dbt_profile_folder:
+    description: "dbt profile folder. Defaults to ."
+    default: "."
+    required: false
 outputs:
   result:
     description: "Success or failure of the dbt command"

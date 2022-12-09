@@ -3,6 +3,7 @@
 set -o pipefail
 
 echo "dbt project folder set as: \"${INPUT_DBT_PROJECT_FOLDER}\""
+echo "dbt profile folder set as: \"${INPUT_DBT_PROFILE_FOLDER}\""
 cd ${INPUT_DBT_PROJECT_FOLDER}
 
 if [ -n "${DBT_BIGQUERY_TOKEN}" ]
@@ -22,11 +23,13 @@ then
 elif [ -n "${DBT_USER}" ] && [ -n "$DBT_PASSWORD" ]
 then
  echo trying to use user/password
+ cp ${INPUT_DBT_PROFILE_FOLDER}/profiles.yml .
  sed -i "s/_user_/${DBT_USER}/g" ./profiles.yml
  sed -i "s/_password_/${DBT_PASSWORD}/g" ./profiles.yml
 elif [ -n "${DBT_TOKEN}" ]
 then
  echo trying to use DBT_TOKEN/databricks
+ cp ${INPUT_DBT_PROFILE_FOLDER}/datab.yml .
  sed -i "s/_token_/${DBT_TOKEN}/g" ./datab.yml
 else
   echo no tokens or credentials supplied
