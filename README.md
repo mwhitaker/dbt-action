@@ -1,3 +1,7 @@
+# ida-dbt-action-secure
+
+This is a fork the dbt-action by mwhitaker that gives FMGL greater control over the code and enhances security via public key encription of the database credentials. 
+
 # dbt-action
 
 A GitHub Action to run [dbt](https://www.getdbt.com) commands in a Docker container. It uses the official images provided by [Fishtown Analytics](https://hub.docker.com/r/fishtownanalytics/dbt/tags). You can use [dbt commands](https://docs.getdbt.com/reference/dbt-commands) such as `run`, `test` and `debug`. This action captures the dbt console output for use in subsequent steps.
