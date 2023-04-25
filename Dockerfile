@@ -1,4 +1,4 @@
-ARG DBT_VERSION=v1.3.0
+ARG DBT_VERSION=v1.4.6
 FROM mwhitaker/dbt_all:${DBT_VERSION}
 
 COPY entrypoint.sh /entrypoint.sh
