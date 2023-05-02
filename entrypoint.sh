@@ -40,11 +40,11 @@ $1 2>&1 | tee "${DBT_ACTION_LOG_FILE}"
 if [ $? -eq 0 ]
   then
     echo "DBT_RUN_STATE=passed" >> $GITHUB_ENV
-    echo "::set-output name=result::passed"
+    echo "result=passed" >> $GITHUB_OUTPUT
     echo "DBT run OK" >> "${DBT_ACTION_LOG_FILE}"
   else
     echo "DBT_RUN_STATE=failed" >> $GITHUB_ENV
-    echo "::set-output name=result::failed"
+    echo "result=failed" >> $GITHUB_OUTPUT
     echo "DBT run failed" >> "${DBT_ACTION_LOG_FILE}"
     exit 1
 fi
