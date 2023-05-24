@@ -29,8 +29,8 @@ then
 elif [ -n "${DBT_TOKEN}" ]
 then
  echo trying to use DBT_TOKEN/databricks
- cp ${INPUT_DBT_PROFILE_FOLDER}/datab.yml .
- sed -i "s/_token_/${DBT_TOKEN}/g" ./datab.yml
+ cp ${INPUT_DBT_PROFILE_FOLDER}/profiles.yml .
+ sed -i "s/_token_/${DBT_TOKEN}/g" ./profiles.yml
 else
   echo no tokens or credentials supplied
 fi
