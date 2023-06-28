@@ -2,6 +2,8 @@
 
 update the references in the Dockerfile to current ones.
 
-`docker build --tag mwhitaker/dbt_all:v1.4.6  --target dbt-all .`
+using the dbt [Dockerfile](https://github.com/dbt-labs/dbt-core/blob/main/docker/Dockerfile) as a template.
 
-`docker push mwhitaker/dbt_all:v1.4.6`
+`docker build --tag mwhitaker/dbt_all:v1.5.0  --target dbt-all .`
+
+`docker push mwhitaker/dbt_all:v1.5.0`
