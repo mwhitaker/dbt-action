@@ -1,5 +1,4 @@
-ARG DBT_VERSION=v1.5.0
-FROM mwhitaker/dbt_all:${DBT_VERSION}
+FROM ghcr.io/dbt-labs/dbt-snowflake:1.6.1
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
