@@ -21,7 +21,7 @@ ARG dbt_postgres_ref=dbt-core@v1.6.3
 ARG dbt_redshift_ref=dbt-redshift@v1.6.1
 ARG dbt_bigquery_ref=dbt-bigquery@v1.6.5
 ARG dbt_snowflake_ref=dbt-snowflake@v1.6.2
-ARG dbt_spark_ref=dbt-spark@v1.5.2
+ARG dbt_spark_ref=dbt-spark@v1.6.0
 # special case args
 ARG dbt_spark_version=all
 ARG dbt_third_party
