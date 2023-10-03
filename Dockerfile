@@ -1,5 +1,5 @@
-ARG DBT_VERSION=v1.5.0
-FROM mwhitaker/dbt_all:${DBT_VERSION}
+ARG DBT_VERSION=v1.6.3
+FROM ghcr.io/mwhitaker/dbt_all:${DBT_VERSION}
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
