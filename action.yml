@@ -11,6 +11,9 @@ inputs:
     description: "dbt project folder. Defaults to ."
     default: "."
     required: false
+  http_path:
+    description: "http_path for databricks"
+    required: false
 outputs:
   result:
     description: "Success or failure of the dbt command"

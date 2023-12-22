@@ -28,6 +28,10 @@ elif [ -n "${DBT_TOKEN}" ]
 then
  echo trying to use DBT_TOKEN/databricks
  sed -i "s/_token_/${DBT_TOKEN}/g" ./datab.yml
+elif [ -n "${INPUT_HTTP_PATH}" ]
+then
+ echo trying to use http_path for databricks
+ sed -i "s/_http_path_/${INPUT_HTTP_PATH}/g" ./profiles.yml
 else
   echo no tokens or credentials supplied
 fi

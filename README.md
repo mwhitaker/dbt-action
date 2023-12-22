@@ -113,16 +113,12 @@ default:
   target: dev
   outputs:
     dev:
-      type: spark
-      method: http
+      type: databricks
       schema: dev_user
       host: abc-12345-3cc5.cloud.databricks.com
-      port: 443
+      schema: abc
       token: _token_ # this will be substituted during build time
-      cluster: 1234-56789-abc233
-      connect_timeout: 30
-      connect_retries: 15
-      threads: 5
+      http_path: _http_path_ # this will be substituted during build time
 ```
 Create a secret for `DBT_TOKEN` and reference it in your workflow.
 ```yml
@@ -130,6 +126,7 @@ Create a secret for `DBT_TOKEN` and reference it in your workflow.
       uses: mwhitaker/dbt-action@master
       with:
         dbt_command: "dbt run --profiles-dir ."
+        http_path: "sql/protocol/"
       env:
         DBT_TOKEN: ${{ secrets.DBT_TOKEN }}
 ```

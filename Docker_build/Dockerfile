@@ -22,7 +22,7 @@ ARG dbt_redshift_ref=dbt-redshift@v1.7.1
 ARG dbt_bigquery_ref=dbt-bigquery@v1.7.2
 ARG dbt_snowflake_ref=dbt-snowflake@v1.7.1
 ARG dbt_spark_ref=dbt-spark@v1.7.1
-ARG dbt_databricks_ref=dbt-databricks@v1.7.2
+ARG dbt_databricks_ref=dbt-databricks@v1.7.3
 # special case args
 ARG dbt_spark_version=all
 ARG dbt_third_party
