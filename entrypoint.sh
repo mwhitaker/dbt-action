@@ -35,7 +35,7 @@ fi
 if [ -n "${INPUT_HTTP_PATH}" ]
 then
  echo trying to use http_path for databricks
- sed -i "s/_http_path_/${INPUT_HTTP_PATH}/g" ./profiles.yml
+ sed -i "s/_http_path_/$(echo $INPUT_HTTP_PATH | sed 's/\//\\\//g')/g" ./profiles.yml
 fi
 
 DBT_ACTION_LOG_FILE=${DBT_ACTION_LOG_FILE:="dbt_console_output.txt"}
