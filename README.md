@@ -3,7 +3,7 @@
 A GitHub Action to run [dbt](https://www.getdbt.com) commands in a Docker container. It uses the official images provided by [Fishtown Analytics](https://hub.docker.com/r/fishtownanalytics/dbt/tags). You can use [dbt commands](https://docs.getdbt.com/reference/dbt-commands) such as `run`, `test` and `debug`. This action captures the dbt console output for use in subsequent steps.
 
 ### dbt version
-The current version of dbt is **1.6.3**. Please note that from dbt v1.0.0. you may have to change your dbt project structure compared to v0.x.x. See the [migration](https://docs.getdbt.com/docs/guides/migration-guide/upgrading-to-1-0-0) docs.
+The current version of dbt is **1.7.3**. Please note that from dbt v1.0.0. you may have to change your dbt project structure compared to v0.x.x. See the [migration](https://docs.getdbt.com/docs/guides/migration-guide/upgrading-to-1-0-0) docs.
 
 dbt updates their [docker images](https://hub.docker.com/r/fishtownanalytics/dbt/tags?page=1&ordering=last_updated) on a frequent basis and the main branch of this Github Action should be close to the last stable tag. If you need to use an earlier version of dbt, you can call this action with a specific [release](https://github.com/mwhitaker/dbt-action/releases), eg `mwhitaker/dbt-action@v0.21.0` or `mwhitaker/dbt-action@v1.5.0`.
 
@@ -113,16 +113,12 @@ default:
   target: dev
   outputs:
     dev:
-      type: spark
-      method: http
+      type: databricks
       schema: dev_user
       host: abc-12345-3cc5.cloud.databricks.com
-      port: 443
+      schema: abc
       token: _token_ # this will be substituted during build time
-      cluster: 1234-56789-abc233
-      connect_timeout: 30
-      connect_retries: 15
-      threads: 5
+      http_path: _http_path_ # this will be substituted during build time
 ```
 Create a secret for `DBT_TOKEN` and reference it in your workflow.
 ```yml
@@ -130,6 +126,7 @@ Create a secret for `DBT_TOKEN` and reference it in your workflow.
       uses: mwhitaker/dbt-action@master
       with:
         dbt_command: "dbt run --profiles-dir ."
+        http_path: "sql/protocol/"
       env:
         DBT_TOKEN: ${{ secrets.DBT_TOKEN }}
 ```
